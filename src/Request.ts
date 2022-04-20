@@ -28,13 +28,7 @@ export function request(route: string, body: { [key: string]: any; }, callback: 
     fetch(form).then(result => result.json().then(obj => callback(result.status, obj)))
 }
 
-export function request_urlencoded(route: string, form_data: FormData, callback: (status: number, obj: Response) => void, headers: { [key: string]: string; } = default_headers) {
-    let token = window.localStorage.getItem("token")
-    if (token != null) {
-        headers = {
-            "Authorization": token
-        }
-    }
+export function request_urlencoded(route: string, form_data: FormData, callback: (status: number, obj: Response) => void, headers: { [key: string]: string; }) {
     let form = new Request(api(route), {
         method: 'POST',
         credentials: "same-origin",

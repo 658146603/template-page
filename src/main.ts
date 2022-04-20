@@ -4,6 +4,8 @@ import App from "./components/App.vue";
 import HomePage from "./components/HomePage.vue";
 import NotFoundPage from "./components/NotFoundPage.vue";
 import ReleasePage from './components/ReleasePage';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import './main.css';
 
 const router = createRouter({
@@ -17,4 +19,5 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
+app.use(ElementPlus);
 app.mount('#app');
