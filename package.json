@@ -11,6 +11,7 @@
     "html2canvas": "^1.4.1",
     "mdui": "^1.0.2",
     "vue": "^3.2.31",
+    "vue-router": "^4.0.14",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
