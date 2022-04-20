@@ -12,9 +12,9 @@ export interface PageInfo {
     submitToken?: string
 }
 
-const GROUP_DEPLOY_TYPE = { static: "DEPLOY_TYPE_STATIC", dynamic: "DEPLOY_TYPE_DYNAMIC" };
-const GROUP_USER_VERIFY = { none: "USER_VERIFY_NONE", email: "USER_VERIFY_EMAIL", tel: "USER_VERIFY_TEL" };
-const GROUP_DEPLOY_ADDITION = { access_stats: "DEPLOY_ADDITION_ACCESS_STATS", export_data: "DEPLOY_ADDITION_EXPORT_DATA", large_data: "DEPLOY_ADDITION_LARGE_DATA" };
+export const GROUP_DEPLOY_TYPE = { static: "DEPLOY_TYPE_STATIC", dynamic: "DEPLOY_TYPE_DYNAMIC" };
+export const GROUP_USER_VERIFY = { none: "USER_VERIFY_NONE", email: "USER_VERIFY_EMAIL", tel: "USER_VERIFY_TEL" };
+export const GROUP_DEPLOY_ADDITION = { access_stats: "DEPLOY_ADDITION_ACCESS_STATS", export_data: "DEPLOY_ADDITION_EXPORT_DATA", large_data: "DEPLOY_ADDITION_LARGE_DATA" };
 
 function form_action(payload: Event, page_info: PageInfo) {
     payload.preventDefault();
