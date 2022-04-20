@@ -77,7 +77,6 @@ const UserVerifyPage = defineComponent({
                     message: "请先获取验证码",
                     position: "bottom",
                 });
-                return
             }
         }
 

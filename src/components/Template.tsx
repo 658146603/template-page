@@ -1,3 +1,4 @@
+import mdui from "mdui";
 import { request_urlencoded } from "../Request";
 import { Widget, ClassProp, FormProp, SlotProp } from "../Widget";
 
@@ -30,6 +31,22 @@ function form_action(payload: Event, page_info: PageInfo) {
     console.log(args);
     request_urlencoded(`upload/data/${page_info.pageId}`, data, (status, obj) => {
         console.log(status, obj);
+        if (status == 200 && obj.code == 200) {
+            mdui.snackbar({
+                message: "提交成功",
+                position: "bottom",
+            })
+        } else if (status == 200 && obj.code == 400) {
+            mdui.snackbar({
+                message: obj.message || "提交失败",
+                position: "bottom",
+            })
+        } else {
+            mdui.snackbar({
+                message: "网络异常",
+                position: "bottom",
+            })
+        }
     }, { "Authorization": page_info.submitToken ?? "" })
 }
 
