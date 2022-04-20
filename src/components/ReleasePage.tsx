@@ -13,7 +13,6 @@ const ReleasePage = defineComponent({
     },
     setup({ page }) {
         const page_info = ref<PageInfo>()
-        const submit_token = ref<string>()
 
         const access_page = () => {
             request(`access/${page}`, {}, (status, obj) => { console.log(status, obj) })
@@ -45,9 +44,9 @@ const ReleasePage = defineComponent({
         access_page()
         get_page_info()
 
-        function page_content(page_info?: PageInfo) {
+        const page_content = (page_info?: PageInfo) => {
             if (page_info) {
-                return () => (
+                return (
                     <div>
                         {page_info.elements.map(element => {
                             return template_render_function(element).render(element, page_info)
@@ -55,7 +54,7 @@ const ReleasePage = defineComponent({
                     </div>
                 )
             } else {
-                return () => (
+                return (
                     <div>
                         <ElResult
                             icon="error"
@@ -77,7 +76,7 @@ const ReleasePage = defineComponent({
             <div class='mdui-container'>
                 <div class='mdui-col-md-4 mdui-col-sm-2'></div>
                 <div class='mdui-col-md-4 mdui-col-sm-8'>
-                    {page_content(page_info.value)()}
+                    {page_content(page_info.value)}
                 </div>
                 <div class='mdui-col-md-4 mdui-col-sm-2'></div>
             </div>
