@@ -96,7 +96,7 @@ const UserVerifyPage = defineComponent({
                     <ElCol span={2} />
 
                     <ElCol span={8}>
-                        <ElButton type="primary" style='width: 100%' onClick={() => get_verify_code()}>
+                        <ElButton type="primary" style='width: 100%' onClick={() => get_verify_code()} disabled={code_info.value !== undefined}>
                             获取验证码
                         </ElButton>
                     </ElCol>
@@ -104,7 +104,7 @@ const UserVerifyPage = defineComponent({
                 <div class='normal-divider-micro'></div>
                 <ElRow>
                     <ElCol span={24}>
-                        <ElButton type="primary" style='width: 100%' onClick={() => { send_verify_code() }}>
+                        <ElButton type="primary" style='width: 100%' onClick={() => { send_verify_code() }} disabled={code_info.value === undefined}>
                             提交
                         </ElButton>
                     </ElCol>
