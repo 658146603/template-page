@@ -50,6 +50,20 @@ function form_action(payload: Event, page_info: PageInfo) {
     }, { "Authorization": page_info.submitToken ?? "" })
 }
 
+function button_action(action: string, args: { content: string }[]) {
+    console.log(action, args.map(x => x.content));
+    if (action === 'open') {
+        args.forEach(x => {
+            window.open(x.content);
+        })
+    }
+    if (action == 'code') {
+       args.forEach(x => {
+            eval(x.content);
+       })
+    }
+}
+
 function create_class_list(init: string[], prop?: ClassProp): string[] {
     let classList = Array.from(init)
 
@@ -95,7 +109,12 @@ export const button: TemplateWidget<{ action: string, arguments: any[] }> = {
             prop.content = '普通按钮'
         }
         let classList: string[] = create_class_list(['template-item', 'template-default-button'], prop.clazz)
-        return (<button class={classList}>{prop.content}</button>)
+        const action = content.universal_prop.action
+        if (action == undefined || action == '' || action == 'submit') {
+            return (<button type="submit" class={classList}>{prop.content}</button>)
+        }
+        const args = content.universal_prop.arguments
+        return (<button type="button" class={classList} onClick={() => button_action(action, args)}>{prop.content}</button>)
     },
     universal_prop() {
         return {
