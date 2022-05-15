@@ -52,11 +52,11 @@
 }
 
 .template-selected {
-    border: 1px solid #4cafac;
+    outline: 1px solid #4cafac;
 }
 
 .template-selected .template-slot {
-    border: 1px solid #4cafac;
+    outline: 1px solid #4cafac;
 }
 
 .slot-control-item-handle {
