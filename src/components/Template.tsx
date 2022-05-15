@@ -182,7 +182,7 @@ export const image: TemplateWidget = {
     name: "IMAGE",
     render(content, page_info) {
         let prop = content.node_prop
-        let classList: string[] = create_class_list([], prop.clazz)
+        let classList: string[] = create_class_list(['template-item'], prop.clazz)
         if (prop.url == undefined || prop.url.length == 0) {
             prop.url = '/thumbnail.png'
         }
@@ -277,8 +277,8 @@ export const form: TemplateWidget = {
             )
         })
         return (
-            <form method={form_prop.method} action={form_prop.url} onSubmit={(payload) => form_action(payload, page_info)}>
-                <div class="mdui-container-fluid template-container-release" id={content.id}>
+            <form id={content.id} method={form_prop.method} action={form_prop.url} onSubmit={(payload) => form_action(payload, page_info)}>
+                <div class="mdui-container-fluid template-container-release">
                     {items}
                 </div>
             </form>

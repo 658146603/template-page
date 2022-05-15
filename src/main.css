@@ -154,6 +154,7 @@
     line-height: 20px;
     min-height: 36px;
     max-width: 100%;
+    margin: 0;
 }
 
 .template-image-title {
