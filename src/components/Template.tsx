@@ -108,13 +108,14 @@ export const button: TemplateWidget<{ action: string, arguments: any[] }> = {
         if (prop.content == undefined) {
             prop.content = '普通按钮'
         }
-        let classList: string[] = create_class_list(['template-item', 'template-default-button'], prop.clazz)
+        let classList: string[] = create_class_list(['template-default-button'], prop.clazz)
         const action = content.universal_prop.action
         if (action == undefined || action == '' || action == 'submit') {
-            return (<button type="submit" class={classList}>{prop.content}</button>)
+            return (<button id={content.id} type="submit" class={classList}>{prop.content}</button>)
+        } else {
+            const args = content.universal_prop.arguments
+            return (<button id={content.id} type="button" class={classList} onClick={() => button_action(action, args)}>{prop.content}</button>)
         }
-        const args = content.universal_prop.arguments
-        return (<button type="button" class={classList} onClick={() => button_action(action, args)}>{prop.content}</button>)
     },
     universal_prop() {
         return {
@@ -131,8 +132,8 @@ export const text_single: TemplateWidget = {
         if (prop.content == undefined) {
             prop.content = '单行文本'
         }
-        let classList: string[] = create_class_list(['template-item', 'template-default-text-single'], prop.clazz)
-        return (<p class={classList} style={prop.styles}>{prop.content}</p>)
+        let classList: string[] = create_class_list(['template-default-text-single'], prop.clazz)
+        return (<p id={content.id} class={classList} style={prop.styles}>{prop.content}</p>)
     },
     universal_prop() {
         return {}
@@ -146,8 +147,8 @@ export const text_multi: TemplateWidget = {
         if (prop.content == undefined) {
             prop.content = '多行文本'
         }
-        let classList: string[] = create_class_list(['template-item', 'template-default-text-multi'], prop.clazz)
-        return (<p class={classList} style={prop.styles}>{prop.content}</p>)
+        let classList: string[] = create_class_list(['template-default-text-multi'], prop.clazz)
+        return (<p id={content.id} class={classList} style={prop.styles}>{prop.content}</p>)
     },
     universal_prop() {
         return {}
@@ -168,9 +169,9 @@ export const input: TemplateWidget = {
         }
 
 
-        let classList: string[] = create_class_list(['template-item', 'template-default-input'], prop.clazz)
+        let classList: string[] = create_class_list(['template-default-input'], prop.clazz)
 
-        return (<input type={prop.type} class={classList} name={prop.name} placeholder={prop.content} />)
+        return (<input id={content.id} type={prop.type} class={classList} name={prop.name} placeholder={prop.content} />)
     },
     universal_prop() {
         return {}
@@ -181,20 +182,20 @@ export const image: TemplateWidget = {
     name: "IMAGE",
     render(content, page_info) {
         let prop = content.node_prop
-        let classList: string[] = create_class_list(['template-item'], prop.clazz)
+        let classList: string[] = create_class_list([], prop.clazz)
         if (prop.url == undefined || prop.url.length == 0) {
             prop.url = '/thumbnail.png'
         }
         if (prop.content === undefined || prop.content.length === 0) {
             return (
                 <div>
-                    <img class={classList} src={prop.url} alt='图片' />
+                    <img id={content.id} class={classList} src={prop.url} alt='图片' />
                 </div>
             )
         } else {
             return (
                 <div>
-                    <img class={classList} src={prop.url} alt='图片' />
+                    <img id={content.id} class={classList} src={prop.url} alt='图片' />
                     <div class={['template-image-title', ...classList]}>{prop.content}</div>
                 </div>
             )
@@ -209,10 +210,10 @@ export const divider: TemplateWidget = {
     name: "DIVIDER",
     render(content) {
         let prop = content.node_prop
-        let classList: string[] = create_class_list(['template-item'], prop.clazz)
+        let classList: string[] = create_class_list([], prop.clazz)
         return (
-            <div class={classList}>
-                <div class='template-item template-divider'>{prop.content}</div>
+            <div id={content.id} class={classList}>
+                <div class='template-divider'>{prop.content}</div>
             </div>
         )
     },
@@ -265,7 +266,7 @@ export const form: TemplateWidget = {
                     <div>
                         {
                             child.children.map(
-                                (widget: Widget) => {
+                                (widget) => {
                                     let render = template_render_function(widget)
                                     return render.render(widget, page_info)
                                 }
@@ -300,9 +301,9 @@ export const radio_group: TemplateWidget<{ options: { label: string, value: stri
     },
     name: "RADIO_GROUP",
     render(content, page_info): JSX.Element {
-        const classList = create_class_list(['template-item'], content.node_prop.clazz)
+        const classList = create_class_list([], content.node_prop.clazz)
         return (
-            <div class={classList}>
+            <div id={content.id} class={classList}>
                 <div class="template-default-text-single">
                     {content.node_prop.content}
                 </div>
@@ -334,9 +335,9 @@ export const checkbox_group: TemplateWidget<{ options: { label: string, value: s
     },
     name: "CHECKBOX_GROUP",
     render(content, page_info) {
-        const classList = create_class_list(['template-item'], content.node_prop.clazz)
+        const classList = create_class_list([], content.node_prop.clazz)
         return (
-            <div class={classList}>
+            <div id={content.id} class={classList}>
                 <div class="template-default-text-single">
                     {content.node_prop.content}
                 </div>
